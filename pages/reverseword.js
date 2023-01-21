@@ -1,9 +1,34 @@
-export const reverseWord = (str) => {
-    let rev = str.split(" ");
-    return (rev.reverse().toString())
-}
+import React,{useState} from 'react'
 
 
-export const Number2Words = (str)=>{
-    return str
+
+function Reverseword() {
+
+const [value,setValue] = useState('')
+const [returnedValue,setReturnedValue] = useState('')
+
+    const reverseWord = (str) => {
+        if(str === null || str === ""){
+            console.log("Empty input")
+        }
+        if(isNaN(str)){
+            const rev = str.split(" ");
+            rev.reverse().join("")
+            setReturnedValue(rev)
+        }
+       
+    }
+
+  return (
+    <>
+   <input type="text" placeholder='Enter a word' onChange={(e)=>setValue(e.target.value)}/>
+   <button onClick={reverseWord(value)}>ChangeWord</button>
+
+   <p>{returnedValue ? returnedValue : null}</p>
+
+   </>
+  )
 }
+
+export default Reverseword;
+
