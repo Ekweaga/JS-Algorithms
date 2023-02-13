@@ -3,12 +3,15 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Reverseword from "./reverseword"
+import Chunk from "./arraychunk"
+import Capitalization from './capitalize'
+import { useEffect } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const mostOccured = (arr:Array<any>)=>{
+ /*  const mostOccured = (arr:Array<any>)=>{
     const obj:any = {}
     let compareCount = 0
     let i;
@@ -44,9 +47,55 @@ export default function Home() {
     console.log(obj)
 
   }
+*/
 
+  //mostOccured([1,1,2,3,5,7,9,2,2,2])
 
-  mostOccured([1,1,2,3,5,7,9,2,2,2])
+  const chunkArray = (arr:Array<any>,size:number)=>{
+    let chunkedArr = [];
+    let count = 0
+    var i;
+
+ /*   while(count < arr.length){
+    chunkedarr.push(arr.slice(count,count + size));
+    count += size
+   }*/
+
+   for(i=0; i<arr.length; i++){
+    chunkedArr.push(arr.slice(i,size + i))
+   }
+   console.log(chunkedArr)
+
+}
+
+const removeNumbers = (arr:Array<any>)=>{
+  const numbers = arr.filter((item)=>isNaN(item))
+
+  console.log(numbers)
+
+}
+
+const cap= (word:string)=>{
+  let i:number;
+  const arr = word.split(" ")
+  const arr2 = []
+  for(i=0;i<arr.length; i++){
+    
+    const str1= arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+    arr2.push(str1)
+  }
+  const str2 = arr2.join(" ")
+  console.log(str2)
+}
+
+cap("How are you doing")
+removeNumbers(["Charles",1,2,"Follow"])
+
+chunkArray([3,4,5,6,7,8,9],3)
+
+useEffect(()=>{
+<Capitalization/>
+})
   return (
     <>
       <Head>
@@ -55,8 +104,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    
-<Reverseword/>
+
+
+  
 
       
 
